@@ -1,11 +1,14 @@
 # keras-autovc
-Keras implementation of AutoVC
+#### Keras implementation of AutoVC
 
-Credits to the original paper
-https://arxiv.org/abs/1905.05879
+This repository provides an implementation of the AutoVC voice conversion autoencoder using Keras.  Check out the original PyTorch implementation at https://github.com/auspicious3000/autovc based on the paper https://arxiv.org/abs/1905.05879.
 
-and
 
-repo
-
-https://github.com/auspicious3000/autovc
+#### Current [x] and planned [ ] features
+  - [x] Data pipeline:
+	  - [x] Wav-file reading
+	  - [x] -> Spectrogram cleaning 
+	  - [x] -> Training set generation
+  - [x] Speaker embedder
+	  - [x] (one-hot) Many-to-many conversion (seen speakers)
+	  - [ ] (GE2E) Zero-shot conversion (unseen speakers)
