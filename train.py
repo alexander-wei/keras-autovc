@@ -27,7 +27,6 @@ if __name__ == "__main__":
         valspectros = pk.load(fi)
 
     speakers = list(emb_dict.keys())
-
     # generate training sequence
     XGENERATOR = Sample_Loader(spectros, emb_dict, batch_size=2)
     shuf_XGENERATOR = shuffled_Sample_Loader(XGENERATOR)

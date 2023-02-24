@@ -47,12 +47,6 @@ class sampledAudio:
 class SpectrogramPreprocessor:
 
     def __init__(self, args, **av):
-        #self.embs = av['embs']
-        #self.tokens = av['speakers']
-        #self.rootdir = av['rootdir']
-        #args = av['args']
-
-        # speaker token/ids
         speakers = av['speakers']
         self.write_emb_dict(args.embs, speakers)
         self.write_spectrograms(
@@ -66,11 +60,8 @@ class SpectrogramPreprocessor:
     def write_emb_dict(self, embs, tokens):
         if embs is None:
             return
-
         parsed = embs
         parsed = parsed.split(',')
-        # parsed is n,d,file.pk
-        print(parsed)
         d, k = int(parsed[0]), int(parsed[1])
         emb_dict = {}
 
@@ -80,25 +71,15 @@ class SpectrogramPreprocessor:
             assert i_token <= d- k
             I = np.zeros(d)
             I[i_token:i_token + k] = 1.
-
-            #I = FOURSPEAKERS[i_token].reshape(-1)
             emb_dict[token] = I
             i_token += k
 
         with open(parsed[-1], 'wb') as fi:
             pk.dump(emb_dict, fi)
 
-        return #emb_dict
-
-
-    #emb_dict = get_emb_dict(speakers)
-
     def get_spectros_from_files(self, rootdir, **av):
         speakers = av['speakers']
         u,v,s,t = av['parameters']
-
-        #    args.param_u, args.param_v, args.param_s, args.param_t
-
         u,v,s,t = \
             float(u), float(v), float(s), float(t)
 

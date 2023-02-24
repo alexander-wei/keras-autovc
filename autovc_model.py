@@ -3,6 +3,8 @@ from keras import layers
 from keras import Model
 from keras import Sequential
 from keras.initializers import VarianceScaling
+from keras.losses import mae
+from keras.losses import mse
 
 # kernel initializer scaling constants
 scale_relu = 2
@@ -20,6 +22,7 @@ class LinearNorm(layers.Layer):
             units=out_dim, activation=None, use_bias=bias,
             kernel_initializer = init
         )
+
     def call(self, inputs):
         return self.linear_layer(inputs)
 
@@ -69,7 +72,6 @@ class Encoder(layers.Layer):
         self.lstm2 = layers.Bidirectional(
             layers.CuDNNLSTM(units=dim_neck, return_sequences=True),
             merge_mode='concat')
-
 
     def call(self, x, c_org):
         x = layers.GaussianNoise(.05)(x)
@@ -135,6 +137,7 @@ class Decoder(layers.Layer):
 
         return decoder_output
 
+
 class Postnet(layers.Layer):
     def __init__(self):
         super(Postnet, self).__init__()
@@ -176,9 +179,6 @@ class Postnet(layers.Layer):
 
         return x
 
-from keras.losses import mae as mae
-
-from keras.losses import mse as mse
 
 class AutoVC(Model):
     def __init__(self, inputs, name="AutoVC", dim_neck=16, dim_emb=32, dim_freq=16, **av):

@@ -1,13 +1,10 @@
-import os
-import pickle as pk
 import numpy as np
 import random
 import tensorflow as tf
 
-
-# each gets a tuple (speaker_id,   sample spectrograms)
 class Sample_Loader(tf.keras.utils.Sequence):
     def __init__(self, speaker_sets, emb_dict,  batch_size, convert=None, seed=None):
+        # each speaker gets a tuple (speaker_id,   sample spectrograms) -> speaker_sets
         self.speaker_sets = speaker_sets
         self.emb_dict = emb_dict
         self.batch_size = batch_size
@@ -23,7 +20,6 @@ class Sample_Loader(tf.keras.utils.Sequence):
         return len(self.speaker_sets)
 
     def __getitem__(self, idx):
-        #idx = int(np.random.rand
         s_id, list_uttrs = self.speaker_sets[idx]
 
         if not self.seed is None:
@@ -62,7 +58,6 @@ class Sample_Loader(tf.keras.utils.Sequence):
 
 class shuffled_Sample_Loader(tf.keras.utils.Sequence):
     def __init__(self,loader):
-        #super().__init__(*ac, **av)
         self.loader = loader
 
     def __len__(self):
