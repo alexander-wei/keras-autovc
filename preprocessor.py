@@ -116,7 +116,6 @@ class SpectrogramPreprocessor:
             pk.dump(obj, fi)
 
 if __name__ == "__main__":
-    print("hello")
     parser = argparse.ArgumentParser(
         description='''
 Perform STFT and compression of wav files into spectrograms suitable for autoencoding.  Kindly ensure data are structured into folders /rootdir/speaker_id/files.wav and that no extraneous files or directories are in /rootdir
