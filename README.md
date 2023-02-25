@@ -5,7 +5,7 @@ This repository provides an implementation of the AutoVC voice conversion autoen
 
 	  
 #### Audio demo
-Some examples of converted audio can be found at https://www.alexwei.net/keras-autovc-demo
+You can listen to some conversions at https://www.alexwei.net/keras-autovc-demo
 
 
 #### Current [x] and planned [ ] features
